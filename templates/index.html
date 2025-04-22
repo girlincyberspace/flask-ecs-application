@@ -1,0 +1,93 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Flask App Demo</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3>Welcome to the Flask Demo App!</h3>
+                        <p class="lead">This application has been successfully deployed to AWS ECS.</p>
+                        
+                        <div class="alert alert-info mt-4">
+                            <p><strong>Container Info:</strong></p>
+                            <ul>
+                                <li>Hostname: {{ hostname }}</li>
+                                <li>Container ID: {{ container_id }}</li>
+                                <li>Current Time: {{ current_time }}</li>
+                            </ul>
+                        </div>
+                        
+                        <h4 class="mt-4">Available Endpoints:</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item"><code>/</code> - This home page</li>
+                            <li class="list-group-item"><code>/about</code> - About page</li>
+                            <li class="list-group-item"><code>/health</code> - Health check endpoint</li>
+                            <li class="list-group-item"><code>/api/items</code> - REST API for items</li>
+                            <li class="list-group-item"><code>/env</code> - View environment variables</li>
+                        </ul>
+                        
+                        <div class="mt-4">
+                            <a href="/about" class="btn btn-secondary">About</a>
+                            <a href="/api/items" class="btn btn-success">View API Data</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- templates/about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Flask App Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header bg-secondary text-white">
+                        <h2 class="mb-0">About This App</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3>Flask Demo Application</h3>
+                        <p class="lead">This is a simple Flask application deployed to AWS ECS using Terraform and GitHub Actions.</p>
+                        
+                        <h4 class="mt-4">Technology Stack:</h4>
+                        <ul>
+                            <li>Flask - Python web framework</li>
+                            <li>Docker - Containerization</li>
+                            <li>AWS ECS - Container orchestration</li>
+                            <li>Terraform - Infrastructure as Code</li>
+                            <li>GitHub Actions - CI/CD pipeline</li>
+                        </ul>
+                        
+                        <p class="mt-4">This demo application shows how to build a modern containerized application with automated deployment.</p>
+                        
+                        <div class="mt-4">
+                            <a href="/" class="btn btn-primary">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
