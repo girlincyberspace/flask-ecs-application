@@ -18,7 +18,18 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
-        
+    
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      
+    - name: Terraform Init
+      run: terraform init
+      working-directory: ./terraform
+      
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: ./terraform
+    
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
@@ -36,17 +47,6 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
-      
-    - name: Terraform Init
-      run: terraform init
-      working-directory: ./terraform
-      
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      working-directory: ./terraform
-      
     - name: Force new deployment
       run: |
         aws ecs update-service --cluster flask-app-cluster --service flask-app-service --force-new-deployment
